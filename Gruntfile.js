@@ -316,6 +316,10 @@ module.exports = function (grunt) {
                         'styles/fonts/{,*/}*.*',
                         'bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*.*'
                     ]
+                }, {
+                    src: '<%= config.app %>/scripts/eventAggregator.jquery.js',
+                    cwd: '.',
+                    dest: 'eventAggregator.jquery.js'
                 }]
             },
             styles: {
