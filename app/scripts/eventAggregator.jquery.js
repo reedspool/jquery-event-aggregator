@@ -22,12 +22,19 @@
  *
  * Example Useage:
  *
+ * <!-- Load it into HTML like any darn thing -->
+ * <script src="scripts/jquery.js"></script>
+ * <script src="scripts/eventAggregator.jquery.js"></script>
+ * <script src="scripts/main.js"></script>
+ *
+ * Meanwhile, back at the ranch:
+ *
  * $.on('meowmix', function (evt, other, args) { 
  *	// Do cat stuff
- * })
+ * }) ==> $()
  *
  * $.trigger('meowmix', 'cat', 'things') ==> $()
- *    // Side Effect!!! Causes cat things to happen
+ *    // Side Effect!!! Causes cat stuff to happen
  *
  */
 +function ($) {
