@@ -1,4 +1,4 @@
-<code>
+``````````
 /*
  * Top Level jQuery Event Aggregator
  *
@@ -31,4 +31,4 @@
  *    // Side Effect!!! Causes cat things to happen
  *
  */
-</code>
+``````````
