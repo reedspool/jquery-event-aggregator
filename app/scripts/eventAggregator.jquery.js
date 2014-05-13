@@ -32,11 +32,11 @@
  */
 +function ($) {
 
-	function impotent(fn) {
-		// Do a thing, then return an empty jQuery object for chainz
+	function instead(fn, thisInstead) {
+		// Do a thing, then return something else
 		return function (a,r,g,s) {
-			fn.apply(this, arguments);
-			return $empty;
+			fn.apply(null, arguments);
+			return thisInstead;
 		}
 	}
 
@@ -46,11 +46,12 @@
 		trigger = $stan.trigger.bind($stan),
 		on = $stan.on.bind($stan);
 
-	// Blank them! Now they return an empty jQuery selection
+	// Blank our functions out!
+	// Now they return an empty jQuery selection
 	// instead of Stan, our stand-in.
-	// Comment-out for dev mode.
-	trigger = impotent(trigger);
-	on = impotent(on);
+	// Comment for dev mode.
+	trigger = instead(trigger, $empty);
+	on = instead(on, $empty);
 
 	// Finally, modifying the Mothership!
 	$.trigger = trigger;
