@@ -29,36 +29,31 @@
  *
  * Meanwhile, back at the ranch:
  *
- * $.on('meowmix', function (evt, other, args) { 
+ * $.on('meowmix', function (catThingsObj) { 
  *	// Do cat stuff
  * }) ==> $()
  *
- * $.trigger('meowmix', 'cat', 'things') ==> $()
+ * $.trigger('meowmix', {'cat': 'things'}) ==> $()
  *    // Side Effect!!! Causes cat stuff to happen
  *
  */
 +function ($) {
-
-	function instead(fn, thisInstead) {
-		// Do a thing, then return something else
-		return function (a,r,g,s) {
-			fn.apply(null, arguments);
-			return thisInstead;
-		}
-	}
-
 	var stand_in = {},
 		$stan = $(stand_in),
+		// Don't give Stan to anyone else, he's precious
 		$empty = $(),
-		trigger = $stan.trigger.bind($stan),
-		on = $stan.on.bind($stan);
+		trigger = function () {
+			$stan.trigger.apply($stan, arguments);
+			return $empty;
+		},
+		on = function (name, fn) {
+			$stan.on(name, function (evt, obj) {
+				// Shed the event object, who needs it?
+				fn(obj);
+			});
 
-	// Blank our functions out!
-	// Now they return an empty jQuery selection
-	// instead of Stan, our stand-in.
-	// Comment for dev mode.
-	trigger = instead(trigger, $empty);
-	on = instead(on, $empty);
+			return $empty;
+		};
 
 	// Finally, modifying the Mothership!
 	$.trigger = trigger;
