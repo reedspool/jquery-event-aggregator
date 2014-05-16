@@ -3,7 +3,7 @@
  *
  * Author: Reed Spool
  *
- * Version: v0.0.0
+ * Version: v0.0.1
  *
  * Use with: jQuery v1.11.1
  *
